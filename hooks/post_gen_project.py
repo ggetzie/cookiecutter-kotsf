@@ -254,32 +254,35 @@ def append_to_gitignore_file(s):
         gitignore_file.write(os.linesep)
 
 
-def set_flags_in_envs(postgres_user, celery_flower_user, debug=False):
-    local_django_envs_path = os.path.join(".envs", ".local", ".django")
-    production_django_envs_path = os.path.join(".envs", ".production", ".django")
-    local_postgres_envs_path = os.path.join(".envs", ".local", ".postgres")
-    production_postgres_envs_path = os.path.join(".envs", ".production", ".postgres")
-
-    set_django_secret_key(production_django_envs_path)
-    set_django_admin_url(production_django_envs_path)
-
-    set_postgres_user(local_postgres_envs_path, value=postgres_user)
+def set_flags_in_envs(debug=False):
+    set_django_secret_key(".env")
+    set_django_admin_url(".env")
     set_postgres_password(
-        local_postgres_envs_path, value=DEBUG_VALUE if debug else None
+        ".env", value=DEBUG_VALUE if debug else None
     )
-    set_postgres_user(production_postgres_envs_path, value=postgres_user)
-    set_postgres_password(
-        production_postgres_envs_path, value=DEBUG_VALUE if debug else None
+    set_celery_flower_password(
+        ".env", value=DEBUG_VALUE if debug else None
     )
 
-    set_celery_flower_user(local_django_envs_path, value=celery_flower_user)
-    set_celery_flower_password(
-        local_django_envs_path, value=DEBUG_VALUE if debug else None
-    )
-    set_celery_flower_user(production_django_envs_path, value=celery_flower_user)
-    set_celery_flower_password(
-        production_django_envs_path, value=DEBUG_VALUE if debug else None
-    )
+    # local_django_envs_path = os.path.join(".envs", ".local", ".django")
+    # production_django_envs_path = os.path.join(".envs", ".production", ".django")
+    # local_postgres_envs_path = os.path.join(".envs", ".local", ".postgres")
+    # production_postgres_envs_path = os.path.join(".envs", ".production", ".postgres")
+
+    # set_django_secret_key(production_django_envs_path)
+    # set_django_admin_url(production_django_envs_path)
+
+    # set_postgres_user(local_postgres_envs_path, value=postgres_user)
+    
+    # set_postgres_user(production_postgres_envs_path, value=postgres_user)
+    # set_postgres_password(
+    #     production_postgres_envs_path, value=DEBUG_VALUE if debug else None
+    # )
+
+    # set_celery_flower_user(local_django_envs_path, value=celery_flower_user)
+    # set_celery_flower_password(
+    #     local_django_envs_path, value=DEBUG_VALUE if debug else None
+    # )
 
 
 def set_flags_in_settings_files():
@@ -327,11 +330,7 @@ def remove_storages_module():
 def main():
     debug = "{{ cookiecutter.debug }}".lower() == "y"
 
-    set_flags_in_envs(
-        DEBUG_VALUE if debug else generate_random_user(),
-        DEBUG_VALUE if debug else generate_random_user(),
-        debug=debug,
-    )
+    set_flags_in_envs(debug=debug)
     set_flags_in_settings_files()
 
     if "{{ cookiecutter.open_source_license }}" == "Not open source":

@@ -22,7 +22,7 @@ ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["{{ cookiecutter.domai
 
 # DATABASES
 # ------------------------------------------------------------------------------
-DATABASES["default"] = env.db("DATABASE_URL")  # noqa F405
+# DATABASES["default"] = env.db("DATABASE_URL")  # noqa F405
 DATABASES["default"]["ATOMIC_REQUESTS"] = True  # noqa F405
 DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)  # noqa F405
 
@@ -172,7 +172,11 @@ ANYMAIL = {
 {%- elif cookiecutter.mail_service == 'Amazon SES' %}
 # https://anymail.readthedocs.io/en/stable/esps/amazon_ses/
 EMAIL_BACKEND = "anymail.backends.amazon_ses.EmailBackend"
-ANYMAIL = {}
+ANYMAIL = {
+    "AMAZON_SES_CLIENT_PARAMS": {
+        "region_name": env("DJANGO_AWS_S3_REGION_NAME", default="us-east-1")
+    }
+}
 {%- elif cookiecutter.mail_service == 'Mailjet' %}
 # https://anymail.readthedocs.io/en/stable/esps/mailjet/
 EMAIL_BACKEND = "anymail.backends.mailjet.EmailBackend"
@@ -303,7 +307,7 @@ LOGGING = {
         },
         "django.security.DisallowedHost": {
             "level": "ERROR",
-            "handlers": ["console", "mail_admins"],
+            "handlers": ["console"],
             "propagate": True,
         },
     },

@@ -3,8 +3,9 @@
 @import "bootstrap";
 {% endif %}
 
-
-
+.skinny {
+  max-width: 640px;
+}
 // project specific CSS goes here
 
 ////////////////////////////////
