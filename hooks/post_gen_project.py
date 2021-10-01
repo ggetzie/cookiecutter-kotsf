@@ -8,7 +8,7 @@ import os
 import random
 import shutil
 import string
-import pathlib
+
 try:
     # Inspired by
     # https://github.com/django/django/blob/master/django/utils/crypto.py
