@@ -1,0 +1,16 @@
+#!/bin/bash
+
+NAME="{{ cookiecutter.project_slug }}_celery"
+DJANGODIR="/usr/local/src/{{ cookiecutter.project_slug }}"
+USER={{ cookiecutter.project_slug }}_user
+GROUP=webapps
+CELERY_APP=config.celery_app
+SCHEDULE="/usr/local/src/{{ cookiecutter.project_slug }}/run/celery/beat.db"
+
+echo "Starting $NAME as `whoami`"
+
+cd $DJANGODIR
+source /usr/local/src/env/{{ cookiecutter.project_slug }}/bin/activate
+
+echo "Starting Celery"
+exec /usr/local/src/env/{{ cookiecutter.project_slug }}/bin/celery beat --app=$CELERY_APP --schedule $SCHEDULE --loglevel=INFO

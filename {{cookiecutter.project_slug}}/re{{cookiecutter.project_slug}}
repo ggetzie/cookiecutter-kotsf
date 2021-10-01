@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+sudo supervisorctl restart {{ cookiecutter.project_slug }}
+{%- if cookiecutter.use_celery == 'y' %}
+sudo supervisorctl restart {{ cookecutter.project_slug }}_celery
+sudo supervisorctl restart {{ cookecutter.project_slug }}_celerybeat
+{%- endif %}
