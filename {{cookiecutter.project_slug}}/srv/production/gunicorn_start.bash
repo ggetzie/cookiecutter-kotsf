@@ -1,0 +1,38 @@
+#!/bin/bash
+NAME="{{ cookiecutter.project_slug }}"
+DJANGODIR="/usr/local/src/{{ cookiecutter.project_slug }}/"
+SOCKFILE="/usr/local/src/{{ cookiecutter.project_slug }}/run/gunicorn.sock"
+USER={{ cookiecutter.project_slug }}_user
+GROUP=webapps
+NUM_WORKERS=3
+TIMEOUT=120
+DJANGO_SETTINGS_MODULE=config.settings.production
+DJANGO_WSGI_MODULE=config.wsgi
+
+echo "Starting $NAME as `whoami`"
+
+# Activate the virtual environment
+cd $DJANGODIR
+source /usr/local/src/env/{{ cookiecutter.project_slug }}/bin/activate
+
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+
+# Create the run directory if it doesn't exist
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+
+# Start you Django Unicorn 
+# Programs meant to be run under supervisor should not
+# daemonize themselves.
+# (do not use --daemon)
+
+exec /usr/local/src/env/{{ cookiecutter.project_slug }}/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+    --name $NAME \
+    --workers $NUM_WORKERS \
+    --timeout $TIMEOUT \
+    --user=$USER --group=$GROUP \
+    --bind 127.0.0.1:8000 \
+    --log-level=warning \
+    --log-file=-
+

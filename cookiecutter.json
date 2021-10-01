@@ -4,6 +4,8 @@
   "description": "Behold My Awesome Project!",
   "author_name": "Gabriel Getzie",
   "domain_name": "example.com",
+  "include_www": "y",
+  "local_port": "8001",
   "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@example.com",
   "version": "0.1.0",
   "open_source_license": [
@@ -59,6 +61,6 @@
     "Gitlab",
     "Github"
   ],
-  "keep_local_envs_in_vcs": "y",
+  "keep_local_envs_in_vcs": "n",
   "debug": "n"
 }
