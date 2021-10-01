@@ -1,11 +1,6 @@
 """
 NOTE:
-    the below code is to be maintained Python 2.x-compatible
-    as the whole Cookiecutter Django project initialization
-    can potentially be run in Python 2.x environment
-    (at least so we presume in `pre_gen_project.py`).
-
-TODO: ? restrict Cookiecutter Django project initialization to Python 3.x environments only
+    This fork of cookiecutter-django requires Python 3.x+
 """
 from __future__ import print_function
 
@@ -13,7 +8,7 @@ import os
 import random
 import shutil
 import string
-
+import pathlib
 try:
     # Inspired by
     # https://github.com/django/django/blob/master/django/utils/crypto.py
@@ -100,6 +95,30 @@ def remove_celery_files():
         os.path.join("{{ cookiecutter.project_slug }}", "users", "tasks.py"),
         os.path.join(
             "{{ cookiecutter.project_slug }}", "users", "tests", "test_tasks.py"
+        ),
+        os.path.join(
+            "srv", "production", "celery_start"
+        ),
+        os.path.join(
+            "srv", "production", "celerybeat_start"
+        ),
+        os.path.join(
+            "srv", "production", "super_{{cookiecutter.project_slug}}_celery.conf"
+        ),
+        os.path.join(
+            "srv", "production", "super_{{cookiecutter.project_slug}}_celerybeat.conf"
+        ),
+        os.path.join(
+            "srv", "local", "celery_start"
+        ),
+        os.path.join(
+            "srv", "local", "celerybeat_start"
+        ),
+        os.path.join(
+            "srv", "local", "super_{{cookiecutter.project_slug}}_celery.conf"
+        ),
+        os.path.join(
+            "srv", "local", "super_{{cookiecutter.project_slug}}_celerybeat.conf"
         ),
     ]
     for file_name in file_names:
