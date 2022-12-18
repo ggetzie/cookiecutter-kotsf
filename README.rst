@@ -2,17 +2,17 @@ Cookiecutter Kotsf
 ===================
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-    :target: https://github.com/ambv/black
     :alt: Code style: black
+    :target: https://github.com/ambv/black
 
-Powered by `Cookiecutter <https://github.com/cookiecutter/cookiecutter>`, Cookiecutter Kotsf is a fork of `Cookiecutter Django <https://github.com/pydanny/cookiecutter-django>`
+Powered by `Cookiecutter <https://github.com/cookiecutter/cookiecutter>`_, Cookiecutter Kotsf is a fork of `Cookiecutter Django <https://github.com/pydanny/cookiecutter-django>`_
 
 Main Differences
----------
+----------------
 
 * Single requirements.txt file and .env file for simplicity.
 * Deployment scripts and configurations files for nginx, supervisor, and gunicorn.
-* Optionally disable socialaccounts in `django-allauth <https://django-allauth.readthedocs.io/en/latest/>`
+* Optionally disable socialaccounts in `django-allauth <https://django-allauth.readthedocs.io/en/latest/>`_
 * Database settings use username and password from environment variables to access db. This helps prevent permissions issues on your local machine where the database might end up owned by your user rather than the app user.
 
 
@@ -20,11 +20,11 @@ Constraints
 -----------
 
 * Only maintained 3rd party libraries are used.
-* Uses PostgreSQL everywhere (10.16 - 13.2)
+* Uses PostgreSQL everywhere (12.13 - 15.1)
 * Environment variables for configuration (This won't work with Apache/mod_wsgi).
 
 Support Cookiecutter-Django!
-----------------------
+----------------------------
 
 This fork is made possible because of the excellent work done by the Cookiecutter-Django team. Please support them in their efforts to maintain and improve Cookiecutter Django:
 

@@ -5,13 +5,18 @@ Sass Compilation & Live Reloading
 
 If you'd like to take advantage of `live reload`_ and Sass compilation:
 
-- Make sure that nodejs_ is installed. Then in the project root run::
-
+- Make sure that nodejs_ is installed. Then in the project root run
+  
+.. code-block:: bash 
+    
     $ npm install
 
 .. _nodejs: http://nodejs.org/download/
 
-- Now you just need::
+
+- Now you just need
+  
+.. code-block:: bash
 
     $ npm run dev
 

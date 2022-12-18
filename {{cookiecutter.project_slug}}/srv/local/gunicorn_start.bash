@@ -1,6 +1,7 @@
 #!/bin/bash
 NAME="{{ cookiecutter.project_slug }}"
 DJANGODIR="/usr/local/src/{{ cookiecutter.project_slug }}/"
+VENVDIR="${DJANGODIR}/.venv"
 SOCKFILE="/usr/local/src/{{ cookiecutter.project_slug }}/run/gunicorn.sock"
 USER={{ cookiecutter.project_slug }}_user
 GROUP=webapps
@@ -13,7 +14,7 @@ echo "Starting $NAME as `whoami`"
 
 # Activate the virtual environement
 cd $DJANGODIR
-source /usr/local/src/env/{{ cookiecutter.project_slug }}/bin/activate
+source $VENVDIR/bin/activate
 
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
@@ -27,7 +28,7 @@ test -d $RUNDIR || mkdir -p $RUNDIR
 # daemonize themselves.
 # (do not use --daemon)
 
-exec /usr/local/src/env/{{ cookiecutter.project_slug }}/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+exec $VENVDIR/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
     --name $NAME \
     --workers $NUM_WORKERS \
     --timeout $TIMEOUT \

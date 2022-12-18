@@ -2,6 +2,7 @@
 
 NAME="{{ cookiecutter.project_slug }}_celery"
 DJANGODIR="/usr/local/src/{{ cookiecutter.project_slug }}"
+VENVDIR="${DJANGODIR}/.venv"
 USER={{ cookiecutter.project_slug }}_user
 GROUP=webapps
 CELERY_APP=config.celery_app
@@ -9,7 +10,7 @@ CELERY_APP=config.celery_app
 echo "Starting $NAME as `whoami`"
 
 cd $DJANGODIR
-source /usr/local/src/env/{{ cookiecutter.project_slug }}/bin/activate
+source $VENVDIR/bin/activate
 
 echo "Starting Celery"
-exec /usr/local/src/env/{{ cookiecutter.project_slug }}/bin/celery --app=$CELERY_APP worker --loglevel=INFO -n worker.%%h
+exec $VENVDIR/bin/celery --app=$CELERY_APP worker --loglevel=INFO -n worker.%%h

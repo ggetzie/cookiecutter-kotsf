@@ -1,5 +1,4 @@
 {
-  "cSpell.ignoreWords": [
-    "socialaccounts"
-  ]
+  "cSpell.ignoreWords": ["Greenfeld", "Shupeyko", "socialaccounts"],
+  "esbonio.sphinx.confDir": "${workspaceFolder}/docs"
 }
