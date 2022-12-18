@@ -96,27 +96,17 @@ def remove_celery_files():
         os.path.join(
             "{{ cookiecutter.project_slug }}", "users", "tests", "test_tasks.py"
         ),
-        os.path.join(
-            "srv", "production", "celery_start"
-        ),
-        os.path.join(
-            "srv", "production", "celerybeat_start"
-        ),
+        os.path.join("srv", "production", "celery_start"),
+        os.path.join("srv", "production", "celerybeat_start"),
         os.path.join(
             "srv", "production", "super_{{cookiecutter.project_slug}}_celery.conf"
         ),
         os.path.join(
             "srv", "production", "super_{{cookiecutter.project_slug}}_celerybeat.conf"
         ),
-        os.path.join(
-            "srv", "local", "celery_start"
-        ),
-        os.path.join(
-            "srv", "local", "celerybeat_start"
-        ),
-        os.path.join(
-            "srv", "local", "super_{{cookiecutter.project_slug}}_celery.conf"
-        ),
+        os.path.join("srv", "local", "celery_start"),
+        os.path.join("srv", "local", "celerybeat_start"),
+        os.path.join("srv", "local", "super_{{cookiecutter.project_slug}}_celery.conf"),
         os.path.join(
             "srv", "local", "super_{{cookiecutter.project_slug}}_celerybeat.conf"
         ),
@@ -276,12 +266,8 @@ def append_to_gitignore_file(s):
 def set_flags_in_envs(debug=False):
     set_django_secret_key(".env")
     set_django_admin_url(".env")
-    set_postgres_password(
-        ".env", value=DEBUG_VALUE if debug else None
-    )
-    set_celery_flower_password(
-        ".env", value=DEBUG_VALUE if debug else None
-    )
+    set_postgres_password(".env", value=DEBUG_VALUE if debug else None)
+    set_celery_flower_password(".env", value=DEBUG_VALUE if debug else None)
 
     # local_django_envs_path = os.path.join(".envs", ".local", ".django")
     # production_django_envs_path = os.path.join(".envs", ".production", ".django")
@@ -292,7 +278,7 @@ def set_flags_in_envs(debug=False):
     # set_django_admin_url(production_django_envs_path)
 
     # set_postgres_user(local_postgres_envs_path, value=postgres_user)
-    
+
     # set_postgres_user(production_postgres_envs_path, value=postgres_user)
     # set_postgres_password(
     #     production_postgres_envs_path, value=DEBUG_VALUE if debug else None
@@ -310,7 +296,7 @@ def set_flags_in_settings_files():
 
 
 def remove_envs_and_associated_files():
-    shutil.rmtree(".envs")
+    # shutil.rmtree(".env")
     os.remove("merge_production_dotenvs_in_dotenv.py")
 
 
