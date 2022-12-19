@@ -60,7 +60,7 @@ sphinx-autobuild # https://github.com/GaretJax/sphinx-autobuild
 flake8  # https://github.com/PyCQA/flake8
 flake8-isort  # https://github.com/gforcada/flake8-isort
 coverage  # https://github.com/nedbat/coveragepy
-blackb0  # https://github.com/psf/black
+black  # https://github.com/psf/black
 pylint-django  # https://github.com/PyCQA/pylint-django
 {%- if cookiecutter.use_celery == 'y' %}
 pylint-celery  # https://github.com/PyCQA/pylint-celery
