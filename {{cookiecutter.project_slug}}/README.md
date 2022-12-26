@@ -16,6 +16,39 @@ Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings
 
 ## Basic Commands
 
+### Getting started locally
+
+There are few steps to get your project up and running locally for development.
+
+1. Make sure Postgres is installed. This project assumes the use of the [PostgreSQL database](https://www.postgresql.org/download/). Install it and create a superuser for your local account.
+
+   ```±sql
+   CREATE USER my_local_username WITH SUPERUSER;
+   ```
+
+   As long as your Postgres installation is configured to allow login by the `ident` method (i.e. the Postgres username is the same as the account username), you should be able to login without a password. Check the `pg_hba.conf` file to confirm. On Ubuntu systems it's usually found in `/etc/postgres/15/data/pg_hba.conf` (replace 15 with the version of Postgres you're using).
+
+2. Create a virtual environment and install the requirements. Use the `requirements_nover.txt` file if you want to allow pip to use the most recent compatible versions of the installed libraries.
+   ```±bash
+   python -m venv .venv --prompt {{ cookiecutter.project_slug }}
+   source .venv/bin/activate
+   pip install -r requirements_nover.txt
+   ```
+3. Export the environment variables from the `.env` file and set up the database
+   ```
+   source ./export_dotenv
+   ./utility/setup_db
+   ./manage.py makemigrations
+   ./manage.py migrate
+   ```
+4. Start the development server and make sure everything is working as expected.
+   ```
+   ./manage.py runserver
+   ```
+   
+
+
+
 ### Setting Up Your Users
 
 -   To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.

@@ -2,8 +2,11 @@
   "cSpell.ignoreWords": [
     "Greenfeld",
     "Shupeyko",
+    "makemigrations",
     "nosocial",
+    "nover",
     "packagejson",
+    "runserver",
     "socialaccount",
     "socialaccounts"
   ],
