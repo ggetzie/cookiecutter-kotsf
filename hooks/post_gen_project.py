@@ -337,6 +337,24 @@ def remove_storages_module():
     os.remove(os.path.join("{{cookiecutter.project_slug}}", "utils", "storages.py"))
 
 
+def use_nosocial_login():
+    login_path = os.path.join(
+        os.path.join(
+            "{{cookiecutter.project_slug}}", "templates", "account", "login.html"
+        )
+    )
+    nosocial_path = os.path.join(
+        os.path.join(
+            "{{cookiecutter.project_slug}}",
+            "templates",
+            "account",
+            "login_nosocial.html",
+        )
+    )
+    os.remove(login_path)
+    os.rename(dst=login_path, src=nosocial_path)
+
+
 def main():
     debug = "{{ cookiecutter.debug }}".lower() == "y"
 
@@ -416,6 +434,9 @@ def main():
 
     if "{{ cookiecutter.use_async }}".lower() == "n":
         remove_async_files()
+
+    if "{{ cookiecutter.use_socialaccount}}".lower() == "n":
+        use_nosocial_login()
 
     print(SUCCESS + "Project initialized, keep up the good work!" + TERMINATOR)
 
