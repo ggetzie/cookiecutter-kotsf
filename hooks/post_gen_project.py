@@ -223,7 +223,7 @@ def generate_postgres_user(debug=False):
     return DEBUG_VALUE if debug else generate_random_user()
 
 
-def set_postgres_user(file_path, value):
+def set_postgres_user(file_path, value="{{ cookiecutter.project_slug }}_user"):
     postgres_user = set_flag(file_path, "!!!SET POSTGRES_USER!!!", value=value)
     return postgres_user
 
@@ -278,8 +278,6 @@ def set_flags_in_envs(debug=False):
 
     # set_django_secret_key(production_django_envs_path)
     # set_django_admin_url(production_django_envs_path)
-
-    # set_postgres_user(local_postgres_envs_path, value=postgres_user)
 
     # set_postgres_user(production_postgres_envs_path, value=postgres_user)
     # set_postgres_password(

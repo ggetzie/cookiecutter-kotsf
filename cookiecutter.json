@@ -21,8 +21,7 @@
   "use_docker": "n",
   "use_socialaccount": "n",
   "postgresql_version": ["15.1", "14.6", "13.9", "12.13"],
-  "js_task_runner": ["None", "Gulp"],
-  "cloud_provider": ["AWS", "GCP", "Azure", "None"],
+  "cloud_provider": ["AWS", "None"],
   "mail_service": [
     "Mailgun",
     "Amazon SES",
@@ -36,11 +35,7 @@
   ],
   "use_async": "n",
   "use_drf": "n",
-  "frontend_pipeline": [
-    "None",
-    "Django Compressor",
-    "Gulp"
-  ],
+  "frontend_pipeline": ["None", "Django Compressor", "Gulp"],
   "use_celery": "n",
   "use_mailhog": "n",
   "use_sentry": "n",
