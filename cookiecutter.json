@@ -23,8 +23,8 @@
   "postgresql_version": ["15.1", "14.6", "13.9", "12.13"],
   "cloud_provider": ["AWS", "None"],
   "mail_service": [
-    "Mailgun",
     "Amazon SES",
+    "Mailgun",
     "Mailjet",
     "Mandrill",
     "Postmark",
@@ -35,7 +35,7 @@
   ],
   "use_async": "n",
   "use_drf": "n",
-  "frontend_pipeline": ["None", "Django Compressor", "Gulp"],
+  "frontend_pipeline": ["Gulp", "None", "Django Compressor"],
   "use_celery": "n",
   "use_mailhog": "n",
   "use_sentry": "n",

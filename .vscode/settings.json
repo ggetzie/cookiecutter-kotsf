@@ -2,13 +2,18 @@
   "cSpell.ignoreWords": [
     "Greenfeld",
     "Shupeyko",
+    "codebases",
+    "mailhog",
     "makemigrations",
     "nosocial",
     "nover",
     "packagejson",
+    "pyup",
+    "redditclone",
     "runserver",
     "socialaccount",
-    "socialaccounts"
+    "socialaccounts",
+    "whitenoise"
   ],
   "esbonio.sphinx.confDir": "${workspaceFolder}/docs"
 }
